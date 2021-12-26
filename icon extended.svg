@@ -1,0 +1,175 @@
+<svg id="eomsfk73SNB1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 -2 96 42" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" width="90" height="40">
+    <style>
+      <![CDATA[
+      #n_to {
+        animation: n_to__to 10s linear infinite normal forwards
+      }
+  
+      @keyframes n_to__to {
+        0% {
+          transform: translate(4.255013px, 35.017816px);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+        }
+  
+        4.6% {
+          transform: translate(13.243485px, 35.017816px);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+        }
+  
+        7.2% {
+          transform: translate(14.325013px, 35.017816px);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+        }
+  
+        16.1% {
+          transform: translate(4.255013px, 35.017816px)
+        }
+  
+        30%,100% {
+          transform: translate(4.255013px, 35.017816px)
+        }
+      }
+  
+      #n_tr {
+        animation: n_tr__tr 10000ms linear infinite normal forwards
+      }
+  
+      @keyframes n_tr__tr {
+        0% {
+          transform: rotate(0deg)
+        }
+  
+        4.7% {
+          transform: rotate(0deg)
+        }
+  
+        6.2% {
+          transform: rotate(-8.034718deg)
+        }
+  
+        7.2% {
+          transform: rotate(1.273598deg)
+        }
+  
+        8% {
+          transform: rotate(0deg)
+        }
+  
+        30%,100% {
+          transform: rotate(0deg)
+        }
+      }
+  
+      #n_ts {
+        animation: n_ts__ts 10000ms linear infinite normal forwards
+      }
+  
+      @keyframes n_ts__ts {
+        0% {
+          transform: scale(1, 1);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+        }
+  
+        4.4% {
+          transform: scale(1, 1);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+        }
+  
+        5.7% {
+          transform: scale(1.1, 1);
+          animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1)
+        }
+  
+        6.9% {
+          transform: scale(1, 1)
+        }
+  
+        30%,100% {
+          transform: scale(1, 1)
+        }
+      }
+  
+      #dot_to {
+        animation: dot_to__to 10000ms linear infinite normal forwards
+      }
+  
+      @keyframes dot_to__to {
+        0% {
+          offset-distance: 0%
+        }
+  
+        4.7% {
+          offset-distance: 0%;
+          animation-timing-function: cubic-bezier(0.225, 0.26, 0.04, 0.995)
+        }
+  
+        6.5% {
+          offset-distance: 27.075231%
+        }
+  
+        8.6% {
+          offset-distance: 42.371989%
+        }
+  
+        11.9% {
+          offset-distance: 53.312219%;
+          animation-timing-function: cubic-bezier(0.23, 0.005, 0.42, 1)
+        }
+  
+        40%,100% {
+          offset-distance: 100%
+        }
+      }
+  
+      #dot_ts {
+        animation: dot_ts__ts 10000ms linear infinite normal forwards
+      }
+  
+      @keyframes dot_ts__ts {
+        0% {
+          transform: scale(1, 1)
+        }
+  
+        4.7% {
+          transform: scale(1, 1)
+        }
+  
+        4.9% {
+          transform: scale(0.85, 1)
+        }
+  
+        5.3% {
+          transform: scale(1, 1)
+        }
+  
+        6.3% {
+          transform: scale(1, 1)
+        }
+  
+        6.6% {
+          transform: scale(1, 0.94)
+        }
+  
+        7.5% {
+          transform: scale(1, 1)
+        }
+  
+        30%,100% {
+          transform: scale(1, 1)
+        }
+      }
+      ]]>
+    </style>
+    <g id="n_to" transform="translate(4.255013,35.017816)">
+      <g id="n_tr" transform="rotate(0)">
+        <g id="n_ts" transform="scale(1,1)">
+          <path id="n" d="M9,5.7L8.4,0.54L0,0.54L0,38.6L9.32,38.6L9.32,19.18C9.32,13.41,13.25,8.55,19.03,8.55C25.03,8.55,28.2,12.94,28.2,18.72L28.2,38.6L37.6,38.6L37.6,18.6C37.6,6.7,30.43,0,21.5,0C16.72,0,12.87,1.93,9,5.7" transform="translate(-4.255013,-34.107816)" fill="rgb(243,202,71)" stroke="none" stroke-width="1" />
+        </g>
+      </g>
+    </g>
+    <g id="dot_to" style="offset-path:path('M52.214998,34.107868Q60.789806,24.13272,69.950084,34.107868Q75.107574,28.474318,79.971478,34.107868Q83.800004,33.173947,88.375999,34.107868L52.214998,34.107868');offset-rotate:0deg">
+      <g id="dot_ts" transform="scale(1,1)">
+        <path id="dot" d="M46.67,34C46.67,41.32,57.76,41.32,57.76,34C57.633807,31.029108,55.188571,28.685531,52.215,28.685531C49.241429,28.685531,46.796193,31.029108,46.67,34" transform="translate(-52.214998,-34.087767)" fill="rgb(243,202,71)" stroke="none" stroke-width="1" />
+      </g>
+    </g>
+  </svg>
