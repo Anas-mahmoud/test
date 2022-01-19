@@ -1,0 +1,203 @@
+<svg xmlns="http://www.w3.org/2000/svg"	width="1000" height="800" viewBox="0 0 1000 800" xml:space="preserve" style="overflow:visible" onload="Init(evt)" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Created March 12th, 2002 -->
+	<title>Spring Library Testbed</title>
+	<style type="text/css">
+		#debugoutput	{ font-size:12; text-anchor:start; filter:none; fill:#666 }
+	
+		circle	{ fill:white; stroke:black; stroke-width:2; fill-opacity:0.6 }
+		.blort text	{ text-anchor:middle; font-size:20; font-weight:bold; baseline-shift:-0.5ex; pointer-events:none }
+		.blort text.cat	{ font-size:10; font-weight:normal }
+		.blort circle.cat { stroke-width:1 }
+
+
+		circle.dragging	{ fill:#ff9 }
+		
+		line	{ stroke-width:2; stroke:#6c6; fill:none; opacity:0.5 }
+		line.strength0-2	{ stroke-width:1; stroke:#c00 }
+		line.strength0-8	{ stroke-width:1 }
+		line.strength2	{ stroke-width:4; opacity:0.8 }
+	</style>
+
+	<script type="text/javascript" xlink:href="libraries/svglib_common.js"></script>
+	<script type="text/javascript" xlink:href="libraries/dragdirector.js"></script>
+	<script type="text/javascript" xlink:href="libraries/Springz.js"></script>
+	<script type="text/javascript"><![CDATA[
+		var svgDoc,svgRoot;
+		window.debugLevel=1;
+	
+		function Init(evt){
+			DebugOut('Init()',1);
+
+			svgDoc = evt.target.ownerDocument;
+			svgRoot = svgDoc.documentElement;
+
+			var gk = new Blort('Gavin',55);
+			var lk = new Blort('Lisa',25);
+			var jp = new Blort('Jim P.',45);
+
+			var jl = new Blort('JibberJim',35);
+			var ds = new Blort('Schepers',45);
+			var tr = new Blort('Tanya',35);
+
+			var c1 = new Blort('Tessa',10);
+			var c2 = new Blort('Phleep',10);
+			var c3 = new Blort('Ibberz',10);
+
+			AddClass(c1.g_c,'cat');
+			AddClass(c2.g_c,'cat');
+			AddClass(c3.g_c,'cat');
+
+			AddClass(c1.g_t,'cat');
+			AddClass(c2.g_t,'cat');
+			AddClass(c3.g_t,'cat');
+
+			// Make them all draggable
+			for (var i=0,len=Blort.all.length;i<len;i++) new DragDirector( Blort.all[i].g, null, null, null, Blort.startDrag, Blort.trackDrag, Blort.stopDrag ); 
+			
+			new Spring(gk,lk,2);
+			new Spring(tr,jp,2);
+
+			new Spring(gk,jp,1,200);
+			new Spring(lk,jp,1,220);
+
+			new Spring(jl,gk,0.5,200);
+			new Spring(ds,gk,0.5,200);
+			new Spring(jl,ds,0.5,120);
+
+			new Spring(tr,gk,1,150);
+			new Spring(tr,lk,1,120);
+
+			new Spring(jl,lk,0.1,600).hide();
+			new Spring(jl,jp,0.1,600).hide();
+			new Spring(jl,tr,0.1,600).hide();
+			new Spring(ds,lk,0.1,600).hide();
+			new Spring(ds,jp,0.1,600).hide();
+			new Spring(ds,tr,0.1,600).hide();
+
+			new Spring(gk,c1,1,90).hide();
+			new Spring(gk,c2,1,150).hide();
+			new Spring(gk,c3,1,170).hide();
+
+			new Spring(lk,c1,1,170).hide();
+			new Spring(lk,c2,1,140).hide();
+			new Spring(lk,c3,2,70).hide();
+
+			new Spring(c1,c2,0.2,200).hide();
+			new Spring(c1,c3,0.2,200).hide();
+			new Spring(c2,c3,0.3,300).hide();
+
+			new Spring(c1,tr,0.1,200).hide();
+			new Spring(c2,tr,0.1,300).hide();
+			new Spring(c3,tr,0.3,400).hide();
+			new Spring(c1,jp,0.1,200).hide();
+			new Spring(c2,jp,0.1,300).hide();
+			new Spring(c3,jp,0.3,400).hide();
+			new Spring(c1,jl,0.1,400).hide();
+			new Spring(c2,jl,0.1,400).hide();
+			new Spring(c3,jl,0.3,600).hide();
+			new Spring(c1,ds,0.1,400).hide();
+			new Spring(c2,ds,0.1,400).hide();
+			new Spring(c3,ds,0.3,600).hide();
+
+
+			Springz.useMass=true;
+			Springz.strengthScale=0.4;
+
+			Blort.randomize();
+			
+			svgRoot.insertBefore( NewObj('rect',{x:-1000,y:-1000,width:4000,height:4000,fill:'white'}) , svgRoot.firstChild);
+		}
+
+
+
+
+
+		
+		function Animate(){
+			if (!go) return;
+			setTimeout(Animate,15);
+			Springz.applyAll(true);
+			fc++;
+		}
+
+		function ShowFPS(){
+			if (!go) return;
+			setTimeout(ShowFPS,2000);
+			var sec = (new Date()-t0)/1000;
+			if (sec>1){
+				var fps = fc/sec;
+				DebugOut(fps.toFixed(1)+' fps',1);
+			}
+		}
+		
+
+
+
+
+
+
+		Blort.all=[];
+		Blort.randomize=function(){
+			for (var i=this.all.length-1;i>=0;i--){
+				var blort = this.all[i];
+
+				var x = Math.randomMax(1000-blort.size*4)+blort.size*2;
+				var y = Math.randomMax(800-blort.size*4)+blort.size*2;
+				
+				blort.moveAllTo(x,y);
+			}
+		}
+		function Blort(name,size){
+			this.name=name;
+			this.collisionRadius=this.size=size;
+			this.mass=size*size*size;
+
+			this.g = NewObj('g',{'class':'blort'},svgRoot);
+			this.g.jsObj=this;
+			this.g_c = NewObj('circle',{r:size},this.g);
+			this.g_t = NewObj('text',null,this.g,name);
+
+			this.loc=new Point(0,0);
+			this.moveTo(0,0);
+			this.constructor.all.push(this);
+		}
+		Blort.prototype.moveTo=function(x,y){
+			if (this.dragging) return false;
+			this.g.setAttribute('transform','translate('+(this.loc.x=x)+' '+(this.loc.y=y)+')');
+			return this.loc;
+		}
+		Blort.prototype.moveAllTo=function(x,y){
+			this.moveTo(x,y);
+			Springz.moveSpringsFor(this,x,y);
+		}
+		Blort.prototype.toString=function(){ return '[Blort "'+this.name+'" r:'+this.size+']' }
+
+		
+		Blort.startDrag=function(evt,g){
+			var blort = g.jsObj;
+			blort.dragging=true;
+			blort.oldMass=blort.mass;
+			blort.mass=Number.MAX_VALUE;
+			blort.g_c.setAttribute('class','dragging');
+			g.parentNode.appendChild(g);
+		}
+		Blort.trackDrag=function(evt,g,s,pt){
+			var blort = g.jsObj;
+			blort.dragging=false;
+			blort.moveAllTo(pt.x,pt.y);
+			blort.dragging=true;
+			Springz.preventCollisions();
+		}
+		Blort.stopDrag=function(evt,g){
+			var blort = g.jsObj;
+			blort.dragging=false;
+			blort.mass=blort.oldMass;
+			blort.g_c.setAttribute('class','');
+		}
+	]]></script>
+	<rect x="0"   y="5" width="90" height="20" fill="green" onclick="go=1; fc=0; t0=new Date(); Animate(); ShowFPS();" />
+	<rect x="100" y="5" width="90" height="20" fill="red" onclick="go=0" />
+	<rect x="200" y="5" width="90" height="20" fill="orange" onclick="Blort.randomize()" />
+	
+	<text id="debugoutput" x="0" y="40"/>
+</svg>
